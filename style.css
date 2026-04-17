@@ -1,0 +1,32 @@
+nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Adjust this value for more or less space between items */
+}
+
+/* Optional: Style the links so they look nicer */
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+/*main page layout with background image */
+main {
+    background-image: url('images/destination.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+}
+
+.socials {
+    display: flex;
+    gap: 5px;
+}
+
+.socials img {
+    width: 30px;
+    height: 30px;
+}
