@@ -1,32 +1,248 @@
-nav {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    /* Adjust this value for more or less space between items */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* =========================================
+   1. BASE & RESETS
+========================================= */
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-/* Optional: Style the links so they look nicer */
-nav a {
-    text-decoration: none;
-    color: #333;
+* {
+    box-sizing: border-box;
 }
 
-/*main page layout with background image */
+/* =========================================
+   2. GLOBAL LAYOUT
+========================================= */
 main {
-    background-image: url('images/destination.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/destination.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.socials {
+.hero-section {
+    width: 100%;
+    height: 100%;
     display: flex;
-    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* =========================================
+   3. COMPONENTS
+========================================= */
+
+/* --- Navigation --- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 5%;
+
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+/* Animated Underline */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: #00d2ff;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav form {
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+nav input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    width: 200px;
+}
+
+nav button {
+    background: #00d2ff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+nav button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+}
+
+/* --- Socials --- */
+.socials {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px 10px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .socials img {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.socials a:hover img {
+    transform: scale(1.2);
+}
+
+/* --- About Section --- */
+.about-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about-header {
+    max-width: 700px;
+    margin: 0 auto 48px auto;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.about-header h2 {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+}
+
+.about-header p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    background: #00d2ff;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.4);
+    background: #00b8e6;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* --- Team Cards Grid --- */
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.team-card {
+    background-color: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 40px 32px;
+    width: 240px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.25rem;
+    color: #111;
+}
+
+.team-card .role {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
