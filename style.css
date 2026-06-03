@@ -21,7 +21,8 @@ main {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    background-attachment: fixed;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -405,4 +406,289 @@ nav button:hover {
 #btn-clear:hover {
     background: rgba(255, 255, 255, 0.3);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================
+   5. MODAL & DIALOG SYSTEMS (Premium Glassmorphism)
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards ease;
+}
+
+.modal-card {
+    background: rgba(20, 25, 35, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    color: white;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    animation: scaleIn 0.3s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+.modal-card h2 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #00d2ff;
+    font-weight: 700;
+}
+
+.modal-card p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 24px;
+}
+
+.modal-card .btn-modal-close {
+    background: #00d2ff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-card .btn-modal-close:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+}
+
+/* Booking Form in Modal */
+.booking-modal {
+    text-align: left;
+    max-width: 550px;
+}
+
+.form-group-modal {
+    margin-bottom: 20px;
+}
+
+.form-group-modal label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+.form-group-modal input,
+.form-group-modal select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group-modal select option {
+    background: #141923;
+    color: white;
+}
+
+.form-group-modal input:focus,
+.form-group-modal select:focus {
+    border-color: #00d2ff;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.25);
+}
+
+.booking-modal-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.booking-modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.booking-modal-buttons .btn-primary {
+    background: #00d2ff;
+    border: none;
+    color: white;
+}
+
+.booking-modal-buttons .btn-primary:hover {
+    background: #00b8e6;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+}
+
+.booking-modal-buttons .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.booking-modal-buttons .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Fade Out Animation */
+.modal-overlay.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* =========================================
+   6. RESPONSIVE MEDIA QUERIES
+   ========================================= */
+@media (max-width: 1024px) {
+    .about-section {
+        padding: 40px 20px;
+    }
+    
+    .about-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .team-grid {
+        gap: 20px;
+    }
+    
+    .team-card {
+        width: 250px;
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navbar Adjustment */
+    nav {
+        position: static;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 5%;
+        background: rgba(10, 15, 25, 0.9); /* Darker solid background for readability */
+        backdrop-filter: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        gap: 25px;
+    }
+    
+    nav form {
+        width: 100%;
+        max-width: 450px;
+        justify-content: space-between;
+    }
+    
+    nav input {
+        width: 100%;
+    }
+    
+    /* Layout Growth and Scrollability */
+    main {
+        min-height: calc(100vh - 120px);
+        height: auto;
+        padding: 30px 20px 60px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow-y: visible;
+    }
+    
+    .hero-section {
+        height: auto;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+    
+    /* Socials centering */
+    .socials {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        justify-content: center;
+        gap: 25px;
+        padding: 12px 24px;
+        margin: 0 auto 30px auto;
+        width: fit-content;
+    }
+    
+    /* Hero Title scaling */
+    .about-header h2 {
+        font-size: 2rem;
+        letter-spacing: 0px;
+    }
+    
+    .about-header p {
+        font-size: 1.05rem;
+    }
+    
+    /* Team Cards Vertical Alignment */
+    .team-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    
+    .team-card {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    /* Contact Form full width spacing */
+    .contact-form {
+        padding: 24px 20px;
+        border-radius: 16px;
+    }
+    
+    /* Search Results Flow */
+    .results-container {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-height: none;
+        overflow-y: visible;
+        padding: 10px 0 30px 0;
+        grid-template-columns: 1fr;
+    }
 }
