@@ -4,37 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn more about Xplor and our team of travel enthusiasts.">
-    <title>About Us - Xplor</title>
+    <meta name="description" content="Learn more about TravelEase and our team of travel enthusiasts.">
+    <title>About Us - TravelEase</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
         <nav id="main-nav">
-            <div class="nav-links">
-                <a href="home.html">Home</a>
-                <a href="about.html">About us</a>
-                <a href="contact.html">Contact us</a>
+            <div class="nav-left">
+                <a href="home.html" class="logo">
+                    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    <span class="logo-text">TravelEase</span>
+                </a>
+                <div class="nav-links">
+                    <a href="home.html">Home</a>
+                    <a href="about.html">About us</a>
+                    <a href="contact.html">Contact us</a>
+                </div>
             </div>
             <form class="search-form" id="search-form">
                 <input type="text" id="destination-search" placeholder="Enter a destination or keyword">
-                <button type="submit" id="btn-search">Search</button>
+                <div class="search-buttons">
+                    <button type="submit" id="btn-search">Search</button>
+                    <button type="button" id="btn-clear">Clear</button>
+                </div>
             </form>
         </nav>
     </header>
 
     <main>
         <section class="hero-section">
-            <div class="socials">
-                <a href="#" aria-label="Facebook"><img src="images/facebook.png" alt="Facebook icon"></a>
-                <a href="#" aria-label="Instagram"><img src="images/instagram.png" alt="Instagram icon"></a>
-                <a href="https://x.com/" aria-label="Twitter"><img src="images/twitter.png" alt="Twitter icon"></a>
-            </div>
-
             <div class="about-section">
                 <div class="about-header">
-                    <h2>ABOUT US</h2>
+                    <h1>About Us</h1>
                     <p>
                         We are a team of travel enthusiasts who love exploring the world and sharing our
                         experiences with others. We believe that travel is the best way to learn about different

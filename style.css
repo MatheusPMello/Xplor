@@ -1,12 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* =========================================
-   1. BASE & RESETS
-========================================= */
+   1. DESIGN TOKENS & VARIABLES
+   ========================================= */
+:root {
+    /* Brand Colors */
+    --primary: #00d2ff;
+    --primary-hover: #00b8e6;
+    --primary-glow: rgba(0, 210, 255, 0.4);
+    
+    /* Neutrals */
+    --white: #ffffff;
+    --text-primary: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --text-placeholder: rgba(255, 255, 255, 0.65);
+    --text-dark: #111111;
+    --text-dark-muted: #555555;
+    
+    /* Backgrounds & Glassmorphism */
+    --bg-overlay: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+    --bg-nav: rgba(15, 23, 42, 0.35); /* Increased slightly for WCAG contrast */
+    --bg-nav-mobile: rgba(15, 23, 42, 0.95);
+    --bg-glass-form: rgba(255, 255, 255, 0.18); /* Accessible input opacity */
+    --bg-glass-form-focus: rgba(255, 255, 255, 0.25);
+    --bg-card: rgba(255, 255, 255, 0.1);
+    --bg-modal: rgba(20, 25, 35, 0.88);
+    
+    /* Borders */
+    --border-glass-light: rgba(255, 255, 255, 0.15);
+    --border-glass-medium: rgba(255, 255, 255, 0.25);
+    --border-primary: rgba(0, 210, 255, 0.4);
+    
+    /* Spacing & Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+    --radius-pill: 50px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+/* =========================================
+   2. BASE & RESETS
+   ========================================= */
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
+    color: var(--text-primary);
 }
 
 * {
@@ -14,10 +58,10 @@ body {
 }
 
 /* =========================================
-   2. GLOBAL LAYOUT
-========================================= */
+   3. GLOBAL LAYOUT
+   ========================================= */
 main {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/destination.png');
+    background-image: var(--bg-overlay), url('images/destination.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -39,10 +83,8 @@ main {
 }
 
 /* =========================================
-   3. COMPONENTS
-========================================= */
-
-/* --- Navigation --- */
+   4. NAVIGATION BRAND & LINKS (Modular & Unified)
+   ========================================= */
 nav {
     position: fixed;
     top: 0;
@@ -54,19 +96,51 @@ nav {
     padding: 0.8rem 5%;
 
     /* Glassmorphism Effect */
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-nav);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border-glass-light);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
-nav a {
-    position: relative;
-    color: #fff;
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Spacing between logo and menu items */
+}
+
+/* Brand Logo Styling */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    transition: transform var(--transition-fast);
+}
+
+.logo:hover {
+    transform: scale(1.03);
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--primary);
+    filter: drop-shadow(0 0 8px var(--primary-glow));
+    transition: transform var(--transition-normal);
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.logo-text {
+    background: linear-gradient(135deg, var(--white) 35%, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .nav-links {
@@ -75,133 +149,186 @@ nav a {
     align-items: center;
 }
 
+.nav-links a {
+    position: relative;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-normal);
+}
+
 /* Animated Underline */
-nav a::after {
+.nav-links a::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
     bottom: -5px;
     left: 0;
-    background: #00d2ff;
-    transition: width 0.3s ease;
+    background: var(--primary);
+    transition: width var(--transition-normal);
 }
 
-nav a:hover::after {
+.nav-links a:hover::after {
     width: 100%;
 }
 
+/* Search Box Container */
 nav form {
     display: flex;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--bg-glass-form);
     padding: 5px 15px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-glass-medium);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+nav form:focus-within {
+    border-color: var(--primary);
+    background: var(--bg-glass-form-focus);
+    box-shadow: 0 0 10px var(--primary-glow);
 }
 
 nav input {
     background: transparent;
     border: none;
-    color: white;
+    color: var(--white);
     outline: none;
     width: 200px;
+    font-size: 0.95rem;
 }
 
-nav button {
-    background: #00d2ff;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 20px;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+nav input::placeholder {
+    color: var(--text-placeholder);
+    font-weight: 500;
 }
 
-nav button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
-}
+/* =========================================
+   5. BUTTONS (Visual Hierarchy System)
+   ========================================= */
 
-/* --- Socials --- */
-.socials {
-    position: absolute;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 20px 10px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.socials img {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s ease;
-}
-
-.socials a:hover img {
-    transform: scale(1.2);
-}
-
-/* --- About Section --- */
-.about-section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.about-header {
-    max-width: 700px;
-    margin: 0 auto 48px auto;
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.about-header h2 {
-    font-size: 3rem;
-    margin-bottom: 16px;
-    letter-spacing: -0.5px;
-    font-weight: 700;
-}
-
-.about-header p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* --- Buttons --- */
+/* Primary Button (Vibrant Cyan Fill) */
 .btn-primary {
-    background: #00d2ff;
-    color: white;
+    background: var(--primary);
+    color: var(--white);
     border: none;
     padding: 12px 32px;
-    border-radius: 30px;
+    border-radius: var(--radius-pill);
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 15px var(--primary-glow);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.4);
-    background: #00b8e6;
+    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+    background: var(--primary-hover);
 }
 
 .btn-primary:active {
     transform: translateY(0);
 }
 
-/* --- Team Cards Grid --- */
+/* Secondary & Ghost Buttons (Header & Sub-actions) */
+.btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 12px 32px;
+    border-radius: var(--radius-pill);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 0 12px var(--primary-glow);
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Nav Specific Button Resets */
+nav button {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-normal);
+}
+
+/* Header Search - Secondary Ghost Button Style */
+#btn-search {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--white);
+}
+
+#btn-search:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* Header Clear - Subtle Ghost Button Style */
+#btn-clear {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#btn-clear:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: var(--white);
+}
+
+/* =========================================
+   6. ABOUT & HERO CONTENT SECTIONS
+   ========================================= */
+.about-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 20px 60px 20px;
+    text-align: center;
+}
+
+.about-header {
+    max-width: 700px;
+    margin: 0 auto 48px auto;
+    color: var(--text-primary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+.about-header h1 {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.about-header p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   7. TEAM CARDS GRID (About Subpage)
+   ========================================= */
 .team-grid {
     display: flex;
     justify-content: center;
@@ -210,22 +337,22 @@ nav button:hover {
 }
 
 .team-card {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 24px;
+    border-radius: var(--radius-xl);
     padding: 48px 32px;
     width: 280px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all var(--transition-slow) cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: default;
 }
 
 .team-card:hover {
     transform: translateY(-12px);
-    background-color: rgba(255, 255, 255, 0.85);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.22);
 }
 
 .team-avatar {
@@ -237,7 +364,7 @@ nav button:hover {
     display: block;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     border: 3px solid rgba(255, 255, 255, 0.8);
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-normal) ease;
 }
 
 .team-card:hover .team-avatar {
@@ -247,17 +374,20 @@ nav button:hover {
 .team-card h3 {
     margin: 0 0 8px 0;
     font-size: 1.25rem;
-    color: #111;
+    color: var(--text-dark);
 }
 
 .team-card .role {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--text-dark-muted);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
+/* =========================================
+   8. CONTACT FORM (Contact Subpage)
+   ========================================= */
 .contact-form-container {
     max-width: 600px;
     margin: 0 auto;
@@ -267,10 +397,10 @@ nav button:hover {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-glass-light);
     padding: 40px;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     text-align: left;
 }
 
@@ -280,36 +410,37 @@ nav button:hover {
 
 .form-group label {
     display: block;
-    color: #fff;
+    color: var(--white);
     margin-bottom: 8px;
     font-weight: 500;
     font-size: 0.95rem;
 }
 
+/* Global Form Fields & Inputs */
 .form-group input,
 .form-group textarea {
     width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
+    background: var(--bg-glass-form);
+    border: 1px solid var(--border-glass-medium);
+    border-radius: var(--radius-md);
     padding: 12px 16px;
-    color: #fff;
+    color: var(--white);
     font-family: inherit;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
     outline: none;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #00d2ff;
-    box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.15);
+    background: var(--bg-glass-form-focus);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.18);
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-placeholder);
 }
 
 .contact-form .btn-primary {
@@ -318,8 +449,8 @@ nav button:hover {
 }
 
 /* =========================================
-   4. RESULTS DISPLAY (Task 8)
-========================================= */
+   9. RECOMMENDATIONS RESULTS SYSTEM
+   ========================================= */
 .results-container {
     position: absolute;
     top: 120px;
@@ -345,20 +476,20 @@ nav button:hover {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
+    border: 1px solid var(--border-glass-light);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    color: white;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--white);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-fast);
     display: flex;
     flex-direction: column;
 }
 
 .recommendation-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 210, 255, 0.4);
-    border-color: rgba(0, 210, 255, 0.5);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px var(--primary-glow);
+    border-color: var(--border-primary);
 }
 
 .recommendation-image {
@@ -375,41 +506,30 @@ nav button:hover {
 .recommendation-content h3 {
     margin: 0 0 10px 0;
     font-size: 1.4rem;
-    color: #00d2ff;
+    color: var(--primary);
 }
 
 .recommendation-content p {
     font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 15px;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-muted);
 }
 
 .recommendation-time {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.55);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 10px;
 }
 
-/* --- Search Buttons Adjustment --- */
 .search-buttons {
     display: flex;
     gap: 10px;
 }
 
-#btn-clear {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-#btn-clear:hover {
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-}
-
 /* =========================================
-   5. MODAL & DIALOG SYSTEMS (Premium Glassmorphism)
+   10. MODAL & DIALOG SYSTEMS
    ========================================= */
 .modal-overlay {
     position: fixed;
@@ -417,7 +537,7 @@ nav button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: flex;
@@ -429,15 +549,15 @@ nav button:hover {
 }
 
 .modal-card {
-    background: rgba(20, 25, 35, 0.85);
+    background: var(--bg-modal);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
+    border: 1px solid var(--border-glass-light);
+    border-radius: var(--radius-xl);
     padding: 40px;
     width: 90%;
     max-width: 500px;
-    color: white;
+    color: var(--white);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
     transform: scale(0.9);
     animation: scaleIn 0.3s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -448,31 +568,31 @@ nav button:hover {
     font-size: 2rem;
     margin-top: 0;
     margin-bottom: 12px;
-    color: #00d2ff;
+    color: var(--primary);
     font-weight: 700;
 }
 
 .modal-card p {
     font-size: 1.05rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-muted);
     margin-bottom: 24px;
 }
 
 .modal-card .btn-modal-close {
-    background: #00d2ff;
+    background: var(--primary);
     border: none;
     padding: 10px 24px;
-    border-radius: 20px;
-    color: white;
+    border-radius: var(--radius-pill);
+    color: var(--white);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .modal-card .btn-modal-close:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+    box-shadow: 0 5px 15px var(--primary-glow);
 }
 
 /* Booking Form in Modal */
@@ -489,7 +609,7 @@ nav button:hover {
     display: block;
     margin-bottom: 6px;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-muted);
     font-weight: 500;
 }
 
@@ -497,24 +617,24 @@ nav button:hover {
 .form-group-modal select {
     width: 100%;
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
+    border: 1px solid var(--border-glass-medium);
+    border-radius: var(--radius-md);
     padding: 12px;
-    color: white;
+    color: var(--white);
     font-family: inherit;
     font-size: 0.95rem;
     outline: none;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
 }
 
 .form-group-modal select option {
     background: #141923;
-    color: white;
+    color: var(--white);
 }
 
 .form-group-modal input:focus,
 .form-group-modal select:focus {
-    border-color: #00d2ff;
+    border-color: var(--primary);
     background: rgba(255, 255, 255, 0.12);
     box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.25);
 }
@@ -528,41 +648,40 @@ nav button:hover {
 .booking-modal-buttons button {
     flex: 1;
     padding: 12px;
-    border-radius: 20px;
+    border-radius: var(--radius-pill);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .booking-modal-buttons .btn-primary {
-    background: #00d2ff;
+    background: var(--primary);
     border: none;
-    color: white;
+    color: var(--white);
 }
 
 .booking-modal-buttons .btn-primary:hover {
-    background: #00b8e6;
+    background: var(--primary-hover);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+    box-shadow: 0 5px 15px var(--primary-glow);
 }
 
 .booking-modal-buttons .btn-secondary {
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
+    border: 1px solid var(--border-glass-medium);
+    color: var(--white);
 }
 
 .booking-modal-buttons .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
 }
 
-/* Fade Out Animation */
+/* Animations */
 .modal-overlay.fade-out {
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-/* Keyframes */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -574,14 +693,18 @@ nav button:hover {
 }
 
 /* =========================================
-   6. RESPONSIVE MEDIA QUERIES
+   11. RESPONSIVE MEDIA QUERIES
    ========================================= */
 @media (max-width: 1024px) {
+    .nav-left {
+        gap: 20px;
+    }
+
     .about-section {
-        padding: 40px 20px;
+        padding: 60px 20px 40px 20px;
     }
     
-    .about-header h2 {
+    .about-header h1 {
         font-size: 2.5rem;
     }
     
@@ -602,9 +725,20 @@ nav button:hover {
         flex-direction: column;
         gap: 15px;
         padding: 15px 5%;
-        background: rgba(10, 15, 25, 0.9); /* Darker solid background for readability */
+        background: var(--bg-nav-mobile);
         backdrop-filter: none;
         border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .nav-left {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 1.5rem;
     }
     
     .nav-links {
@@ -623,7 +757,7 @@ nav button:hover {
         width: 100%;
     }
     
-    /* Layout Growth and Scrollability */
+    /* Layout Adaptations */
     main {
         min-height: calc(100vh - 120px);
         height: auto;
@@ -641,20 +775,8 @@ nav button:hover {
         padding-top: 20px;
     }
     
-    /* Socials centering */
-    .socials {
-        position: static;
-        transform: none;
-        flex-direction: row;
-        justify-content: center;
-        gap: 25px;
-        padding: 12px 24px;
-        margin: 0 auto 30px auto;
-        width: fit-content;
-    }
-    
     /* Hero Title scaling */
-    .about-header h2 {
+    .about-header h1 {
         font-size: 2rem;
         letter-spacing: 0px;
     }
@@ -691,4 +813,4 @@ nav button:hover {
         padding: 10px 0 30px 0;
         grid-template-columns: 1fr;
     }
-}
+}
