@@ -85,7 +85,7 @@ const fallbackData = {
       {
         "id": 1,
         "name": "Bora Bora, French Polynesia",
-        "imageUrl": "https://images.unsplash.com/photo-1505881502353-a1986add373e?q=80&w=1000&auto=format&fit=crop",
+        "imageUrl": "images/bora_bora.jpg",
         "description": "An island known for its stunning turquoise waters and luxurious overwater bungalows."
       },
       {
@@ -157,7 +157,7 @@ function searchRecommendations(event) {
     let results = [];
 
     // 1. Check for generic category keywords (strict check for category plural/singular)
-    if (keyword === 'beach' || keyword === 'beaches') {
+    if (keyword === 'beach' || keyword === 'beaches' || keyword === 'beachs') {
         results = travelData.beaches;
     } else if (keyword === 'temple' || keyword === 'temples') {
         results = travelData.temples;
