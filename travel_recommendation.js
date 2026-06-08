@@ -140,7 +140,7 @@ function searchRecommendations(event) {
     // If on a subpage (no resultsContainer), redirect to home page with search param
     if (!resultsContainer) {
         if (keyword) {
-            window.location.href = `home.html?search=${encodeURIComponent(keyword)}`;
+            window.location.href = `index.html?search=${encodeURIComponent(keyword)}`;
         }
         return;
     }
