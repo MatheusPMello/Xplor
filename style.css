@@ -61,7 +61,7 @@ body {
    3. GLOBAL LAYOUT
    ========================================= */
 main {
-    background-image: var(--bg-overlay), url('images/destination.png');
+    background-image: linear-gradient(rgba(10, 15, 30, 0.6), rgba(10, 15, 30, 0.6)), url('images/destination.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
