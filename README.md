@@ -55,6 +55,3 @@ Xplor/
 ├── travel_recommendation_api.json   # Mock database containing destination info
 └── images/                          # Project assets (icons, destination photos)
 ```
-
-## 📝 Note on Screenshots
-*Please place the provided screenshots (Home, Destinations, About Us, Contact Us) into a `screenshots/` directory at the root of the project to display them properly in this README.*
