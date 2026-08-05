@@ -1,6 +1,6 @@
 # TravelEase
 
-![TravelEase Home](screenshots/home.png)
+<img width="1911" height="903" alt="image" src="https://github.com/user-attachments/assets/51c1dbfd-c6cb-4581-ae13-8824a068ec9c" />
 
 Welcome to **TravelEase**, your ultimate portal to explore dream destinations. Discover the world's most breathtaking places with our curated selection of travel experiences. From pristine beaches to majestic mountains, we have something for every adventurer.
 
@@ -15,13 +15,13 @@ Welcome to **TravelEase**, your ultimate portal to explore dream destinations. D
 ## 📸 Screenshots
 
 ### Search Results & Destinations
-![Destinations](screenshots/destinations.png)
+<img width="1909" height="903" alt="image" src="https://github.com/user-attachments/assets/a91a05f0-933c-4847-b60c-6c83215fdbe9" />
 
 ### About Us
-![About Us](screenshots/about.png)
+<img width="1905" height="902" alt="image" src="https://github.com/user-attachments/assets/e3c44f35-a978-4331-8b5e-a2a6bcff345d" />
 
 ### Contact Us
-![Contact Us](screenshots/contact.png)
+<img width="1906" height="903" alt="image" src="https://github.com/user-attachments/assets/5f4e7c78-f404-4084-85d4-dcad22de612a" />
 
 ## 🛠️ Technology Stack
 
